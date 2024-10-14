@@ -1,0 +1,81 @@
+$background: #0D1B2A;
+$darkest: #1B263B;
+$blue: #415A77;
+$light-blue: #778DA9;
+$lightest: #E0E1DD;
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: $background;
+  color: $lightest;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $light-blue;
+}
+
+.primary-btn {
+  background-color: $blue;
+  color: $lightest;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $darkest;
+  }
+}
+
+.secondary-btn {
+  background-color: $light-blue;
+  color: $darkest;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $blue;
+  }
+}
+
+.flex {
+  display: flex;
+  &.flex-col {
+    flex-direction: column;
+  }
+  &.flex-row {
+    flex-direction: row;
+  }
+  &.justify-between {
+    justify-content: space-between;
+  }
+  &.justify-start {
+    justify-content: flex-start;
+  }
+  &.justify-end {
+    justify-content: flex-end;
+  }
+  &.items-center {
+    align-items: center;
+  }
+  &.items-start {
+    align-items: start;
+  }
+  &.items-end {
+    align-items: end;
+  }
+}
+.h-100vh {
+  height: 100vh;
+}
+.w-100vw {
+  width: 100vw;
+}
+.min-h-100vh {
+  min-height: 100vh;
+}

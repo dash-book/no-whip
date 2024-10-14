@@ -1,0 +1,29 @@
+@import '../../styles/styles';
+
+.l__Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $background;
+  padding: 0 20px;
+
+  img {
+    width: 300px;
+    cursor: pointer;
+  }
+
+  .l__Menu {
+    flex-grow: 1; // Permite que el menú ocupe el espacio restante
+    justify-content: flex-end; // Alinea el menú a la derecha
+    display: flex; // Asegura que los elementos estén en línea
+    background-color: transparent;
+  }
+
+  .ant-menu-item {
+    color: #e0e1dd;
+
+    a:hover {
+      color: $blue;
+    }
+  }
+}
