@@ -4,6 +4,7 @@ import { Layout, Menu } from "antd";
 import logo from "../../assets/logo.svg";
 import "./Header.scss";
 import { useAuth } from "../../context/AuthContext/useAuth";
+import apiRoutes from "../../api/apiRoutes";
 
 const { Header: AntHeader } = Layout;
 
@@ -11,24 +12,22 @@ const Header: React.FC = () => {
   const { isLogged, handleUserLogout } = useAuth();
   return (
     <AntHeader className="l__Header">
-      <div>
-        <Link to="/">
-          <img src={logo} alt="Logo" style={{ width: "200px" }} />
-        </Link>
-      </div>
+      <Link to="/">
+        <img src={logo} alt="Logo" style={{ width: "200px" }} />
+      </Link>
 
       <Menu className="l__Menu" mode="horizontal" theme="dark">
         <Menu.Item key="employees">
-          <Link to="/employees">Employees</Link>
+          <Link to={apiRoutes.employee.page}>Employees</Link>
         </Menu.Item>
         <Menu.Item key="audits">
-          <Link to="/audit">Audits</Link>
+          <Link to={apiRoutes.audit.page}>Audits</Link>
         </Menu.Item>
         <Menu.Item key="tracking">
-          <Link to="/tracking">Tracking</Link>
+          <Link to={apiRoutes.tracking.page}>Tracking</Link>
         </Menu.Item>
         <Menu.Item key="who-is-working">
-          <Link to="/who-is-working">Who is working?</Link>
+          <Link to={apiRoutes.whoIsWorking.page}>Who is working?</Link>
         </Menu.Item>
         {isLogged ? (
           <Menu.Item key="log-out">
@@ -36,7 +35,7 @@ const Header: React.FC = () => {
           </Menu.Item>
         ) : (
           <Menu.Item key="log-in">
-            <Link to="/login">Log in</Link>
+            <Link to={apiRoutes.login.page}>Log in</Link>
           </Menu.Item>
         )}
       </Menu>
