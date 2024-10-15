@@ -18,8 +18,8 @@ export const useLogin = () => {
           return handleUserLogin();
         }
       })
-      .catch((e) => {
-        throw new Error(e);
+      .catch(({ response }) => {
+        throw new Error(response?.data?.message || "Error");
       });
   };
 

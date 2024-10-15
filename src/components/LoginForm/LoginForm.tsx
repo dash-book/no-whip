@@ -3,16 +3,28 @@ import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { useLogin } from "../../api/login/useLogin";
 
 import { type Props as loginProps } from "../../api/login/login.types";
+import type { AxiosError } from "axios";
+import { ErrorRecived, FieldType } from "./LoginForm.types";
 
 export const LoginForm = () => {
   const [form] = Form.useForm();
   const { login } = useLogin();
 
   const handleSubmit = async (values: loginProps) => {
-    return await login({
-      username: values.username,
-      password: values.password,
-    });
+    try {
+      await login({
+        username: values.username,
+        password: values.password,
+      });
+    } catch (err: unknown) {
+      const error = err as AxiosError<ErrorRecived>;
+      form.setFields([
+        {
+          name: "submit",
+          errors: [error?.message || "error"],
+        },
+      ]);
+    }
   };
 
   return (
@@ -28,14 +40,20 @@ export const LoginForm = () => {
         margin: "0 auto",
       }}
     >
-      <Form.Item
+      <Form.Item<FieldType>
         name="username"
         label="Username"
-        rules={[{ required: true, message: "Please input the username" }]}
+        rules={[
+          { required: true, message: "Please input the username" },
+          {
+            type: "email",
+            message: "Please enter a valied Email",
+          },
+        ]}
       >
         <Input />
       </Form.Item>
-      <Form.Item
+      <Form.Item<FieldType>
         name="password"
         label="password"
         rules={[{ required: true, message: "Please input the password" }]}
@@ -46,7 +64,7 @@ export const LoginForm = () => {
           }
         />
       </Form.Item>
-      <Form.Item>
+      <Form.Item name="submit">
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
