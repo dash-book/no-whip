@@ -57,6 +57,9 @@ h1, h2, h3, h4, h5, h6 {
   &.justify-start {
     justify-content: flex-start;
   }
+  &.justify-center {
+    justify-content: center;
+  }
   &.justify-end {
     justify-content: flex-end;
   }
@@ -78,4 +81,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 .min-h-100vh {
   min-height: 100vh;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.filter-invert {
+  filter: invert(1)
 }
