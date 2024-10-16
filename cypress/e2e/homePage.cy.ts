@@ -17,7 +17,6 @@ describe("The Home Page", () => {
     cy.setCookie("auth", "123");
     cy.visit("http://localhost:5173");
     cy.get('[data-testid="log-out-header"]').click();
-    console.log("Cookie: ", cy.getCookie("auth"));
     cy.getCookie("auth").should("be.null");
     cy.get('[data-testid="login"]').should("be.visible");
   });

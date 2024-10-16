@@ -13,7 +13,6 @@ export const useLogin = () => {
         password,
       })
       .then(({ data }) => {
-        console.log("response", data);
         if (data.success) {
           return handleUserLogin(data.message);
         }
