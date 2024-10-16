@@ -36,7 +36,7 @@ export const Header: React.FC = () => {
       ? {
           key: "log-out",
           label: (
-            <span onClick={handleUserLogout}>
+            <span data-testid="log-out-header" onClick={handleUserLogout}>
               <UsergroupDeleteOutlined style={{ paddingRight: "6px" }} />
               Logout
             </span>

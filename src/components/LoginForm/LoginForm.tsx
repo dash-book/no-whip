@@ -29,6 +29,7 @@ export const LoginForm = () => {
 
   return (
     <Form
+      data-testid="login"
       form={form}
       layout="vertical"
       onFinish={handleSubmit}
