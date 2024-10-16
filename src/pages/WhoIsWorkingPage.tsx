@@ -1,38 +1,55 @@
-import React, { useState } from 'react';
-import { Button, DatePicker, TimePicker, Form, Card, Row, Col, message, Avatar, Modal, Input, Tag, Popconfirm } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import axios from 'axios';
-import moment from 'moment';
+import React, { useState } from "react";
+import {
+  Button,
+  DatePicker,
+  TimePicker,
+  Form,
+  Card,
+  Row,
+  Col,
+  message,
+  Avatar,
+  Modal,
+  Input,
+  Tag,
+  Popconfirm,
+} from "antd";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import axios from "axios";
+import moment from "moment";
+import { User } from "../types/User";
 
 const WhoIsWorkingPage: React.FC = () => {
   const [form] = Form.useForm();
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
-  const [currentUser, setCurrentUser] = useState<any>(null); // Usuario actualmente seleccionado para editar
+  const [currentUser, setCurrentUser] = useState<User | null>(null); // Usuario actualmente seleccionado para editar
 
   // Función para manejar el envío del formulario de búsqueda
   const handleSearch = async (values: any) => {
     const { date, time } = values;
-    const dateTime = moment(date).set({
-      hour: time.hour(),
-      minute: time.minute(),
-      second: 0,
-    }).toISOString();
+    const dateTime = moment(date)
+      .set({
+        hour: time.hour(),
+        minute: time.minute(),
+        second: 0,
+      })
+      .toISOString();
 
     setLoading(true);
 
     try {
-      const response = await axios.get('/api/working', {
+      const response = await axios.get("/api/working", {
         params: {
           dateTime,
         },
       });
 
       setEmployees(response.data);
-      message.success('Employees retrieved successfully.');
+      message.success("Employees retrieved successfully.");
     } catch (error) {
-      message.error('No employees were working at the specified time.');
+      message.error("No employees were working at the specified time.");
       setEmployees([]);
     } finally {
       setLoading(false);
@@ -59,7 +76,7 @@ const WhoIsWorkingPage: React.FC = () => {
     try {
       const values = await form.validateFields();
       await axios.put(`/api/users/${currentUser.id}`, values);
-      message.success('User updated successfully');
+      message.success("User updated successfully");
       setIsEditModalVisible(false);
 
       // Actualizar el usuario en la lista
@@ -69,7 +86,7 @@ const WhoIsWorkingPage: React.FC = () => {
         )
       );
     } catch (error) {
-      message.error('Failed to update user');
+      message.error("Failed to update user");
     }
   };
 
@@ -82,44 +99,50 @@ const WhoIsWorkingPage: React.FC = () => {
   const handleDelete = async (id: string) => {
     try {
       await axios.delete(`/api/users/${id}`);
-      message.success('User deleted successfully');
+      message.success("User deleted successfully");
 
       // Eliminar el usuario de la lista
       setEmployees((prevEmployees) =>
         prevEmployees.filter((emp) => emp.id !== id)
       );
     } catch (error) {
-      message.error('Failed to delete user');
+      message.error("Failed to delete user");
     }
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Who is Working?</h2>
-      
-      {/* Formulario para seleccionar fecha y hora */}
-      <Form form={form} onFinish={handleSearch} layout="vertical">
-        <Form.Item
-          name="date"
-          label="Select Date"
-          rules={[{ required: true, message: 'Please select a date' }]}
-        >
-          <DatePicker />
-        </Form.Item>
-        <Form.Item
-          name="time"
-          label="Select Time"
-          rules={[{ required: true, message: 'Please select a time' }]}
-        >
-          <TimePicker format="HH:mm" />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
-            Search
-          </Button>
-        </Form.Item>
-      </Form>
-
+    <main className=" w-full" style={{ padding: "20px" }}>
+      <Card
+        title="Who is Working?"
+        style={{
+          height: "max-content",
+          width: "fit-content",
+          margin: "0 auto 16px",
+        }}
+      >
+        {/* Formulario para seleccionar fecha y hora */}
+        <Form form={form} onFinish={handleSearch} layout="horizontal">
+          <Form.Item
+            name="date"
+            label="Select Date"
+            rules={[{ required: true, message: "Please select a date" }]}
+          >
+            <DatePicker />
+          </Form.Item>
+          <Form.Item
+            name="time"
+            label="Select Time"
+            rules={[{ required: true, message: "Please select a time" }]}
+          >
+            <TimePicker format="HH:mm" />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" loading={loading}>
+              Search
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
       {/* Grid de empleados */}
       <Row gutter={[16, 16]}>
         {employees.map((employee: any) => (
@@ -127,9 +150,14 @@ const WhoIsWorkingPage: React.FC = () => {
             <Card
               title={employee.username}
               bordered
-              cover={<Avatar size={128} src={getAvatarUrl(employee.username)} />}  // Avatar generado
+              cover={
+                <Avatar size={128} src={getAvatarUrl(employee.username)} />
+              } // Avatar generado
               actions={[
-                <EditOutlined key="edit" onClick={() => handleEdit(employee)} />,
+                <EditOutlined
+                  key="edit"
+                  onClick={() => handleEdit(employee)}
+                />,
                 <Popconfirm
                   title="Are you sure you want to delete this user?"
                   onConfirm={() => handleDelete(employee.id)}
@@ -167,20 +195,20 @@ const WhoIsWorkingPage: React.FC = () => {
           <Form.Item
             name="username"
             label="Username"
-            rules={[{ required: true, message: 'Please enter the username' }]}
+            rules={[{ required: true, message: "Please enter the username" }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="email"
             label="Email"
-            rules={[{ required: true, message: 'Please enter the email' }]}
+            rules={[{ required: true, message: "Please enter the email" }]}
           >
             <Input />
           </Form.Item>
         </Form>
       </Modal>
-    </div>
+    </main>
   );
 };
 

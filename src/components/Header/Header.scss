@@ -6,10 +6,15 @@
   align-items: center;
   background-color: $background;
   padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 999; //Header should have the highest
+
 
   img {
     width: 300px;
     cursor: pointer;
+    
   }
 
   .l__Menu {
@@ -20,10 +25,18 @@
   }
 
   .ant-menu-item {
-    color: #e0e1dd;
+    color: $light-blue;
 
-    a:hover {
-      color: $blue;
-    }
+    &.ant-menu-item-selected{
+      background: $blue;
+
+      &:hover{
+        background: $blue;
+      } 
+    };
+
+    & a:hover {
+      color: $light-blue;
+    };
   }
 }

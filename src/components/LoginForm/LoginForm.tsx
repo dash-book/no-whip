@@ -1,0 +1,73 @@
+import { Button, Form, Input } from "antd";
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { useLogin } from "../../api/login/useLogin";
+
+import { type Props as loginProps } from "../../api/login/login.types";
+import type { AxiosError } from "axios";
+import { ErrorRecived, FieldType } from "./LoginForm.types";
+
+export const LoginForm = () => {
+  const [form] = Form.useForm();
+  const { login } = useLogin();
+
+  const handleSubmit = async (values: loginProps) => {
+    try {
+      await login({
+        username: values.username,
+        password: values.password,
+      });
+    } catch (err: unknown) {
+      const error = err as AxiosError<ErrorRecived>;
+      form.setFields([
+        {
+          name: "username",
+          errors: [error?.message || "error"],
+        },
+      ]);
+    }
+  };
+
+  return (
+    <Form
+      data-testid="login"
+      form={form}
+      layout="vertical"
+      onFinish={handleSubmit}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        width: "fit-content",
+        margin: "0 auto",
+      }}
+    >
+      <Form.Item<FieldType>
+        name="username"
+        label="Username"
+        rules={[{ required: true, message: "Please input the username" }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item<FieldType>
+        name="password"
+        label="Password"
+        rules={[{ required: true, message: "Please input the password" }]}
+      >
+        <Input.Password
+          iconRender={(visible) =>
+            visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+          }
+        />
+      </Form.Item>
+      <Form.Item
+        name="submit"
+        className=" flex justify-center"
+        style={{ margin: "0" }}
+      >
+        <button type="submit" className="primary-btn">
+          Submit
+        </button>
+      </Form.Item>
+    </Form>
+  );
+};
