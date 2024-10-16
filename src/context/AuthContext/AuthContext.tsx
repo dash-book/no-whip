@@ -7,6 +7,7 @@ import type {
 
 const defaultContext: AuthContextObject = {
   isLogged: false,
+  id: undefined,
   handleUserLogin: () => {},
   handleUserLogout: () => {},
 };
@@ -16,12 +17,12 @@ export const AuthContext = createContext<AuthContextObject>(defaultContext);
 export const AuthContextProvider: FC<AuthContextProviderProps> = ({
   children,
 }) => {
-  const [isLogged, setIsLogged] = useState<boolean>(
-    getCookie("auth") === "active"
-  );
+  const [isLogged, setIsLogged] = useState<boolean>(!!getCookie("auth"));
+  const [id, setId] = useState<string | undefined>(getCookie("auth"));
 
-  const handleLogin = useCallback(() => {
-    setCookie("auth", "active");
+  const handleLogin = useCallback((id: string) => {
+    setCookie("auth", id);
+    setId(id);
     return setIsLogged(true);
   }, []);
 
@@ -34,6 +35,7 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({
     <AuthContext.Provider
       value={{
         isLogged,
+        id,
         handleUserLogin: handleLogin,
         handleUserLogout: handleLogout,
       }}

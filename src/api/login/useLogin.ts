@@ -15,7 +15,7 @@ export const useLogin = () => {
       .then(({ data }) => {
         console.log("response", data);
         if (data.success) {
-          return handleUserLogin();
+          return handleUserLogin(data.message);
         }
       })
       .catch(({ response }) => {

@@ -1,6 +1,7 @@
 export interface AuthContextObject {
   isLogged: boolean;
-  handleUserLogin: () => void;
+  id?: string;
+  handleUserLogin: (id: string) => void;
   handleUserLogout: () => void;
 }
 
