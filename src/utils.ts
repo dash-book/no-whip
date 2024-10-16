@@ -5,9 +5,8 @@ export const setCookie = (name: string, value: string) => {
 };
 
 export const removeCookie = (name: string) => {
-  const date = new Date();
-  date.setTime(date.getTime() - 1);
-  return (document.cookie = `${name}='';path=/;expires=${date}`);
+  const expiredOldDate = "Thu, 01 Jan 1970 00:00:01 GMT";
+  return (document.cookie = `${name}=;path=/;expires=${expiredOldDate}`);
 };
 
 export const getCookie = (name: string): string => {
