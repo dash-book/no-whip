@@ -39,14 +39,14 @@ Esta prueba NO es un examen. No nos interesa que respondas de forma correcta a t
 
 1.DONE  **Login**: Añade un sistema de login para conectarse a la aplicación. Existe un endpoint (/api/login) que recibe un usuario y contraseña y devuelve un "Login successful" si el usuario es correcto. Puedes ver la lista de usuarios y contraseñas en el archivo server/server.js. El backend no tiene un sistema de tokens ni nada parecido para validar el login. No es necesario implementarlo.
 2.DONE **Estilos por defecto de AntD**: Modifica los estilos por defecto de AntD para que se adapten a los colores definidos en las variables.
-3. **Refactoriza componentes**: Refactoriza los componentes que consideres oportunos.
+3.DONE **Refactoriza componentes**: Refactoriza los componentes que consideres oportunos.
 4. **Modifica la interfaz**: Modifica la interfaz de la página "Audit" para hacerla más visual, intuitiva y moderna.
-5. **Cada empleado solo puede ver sus horas**: Modifica la pantalla TrackingPage de modo que cada empleado solo pueda ver sus propias horas (a partir del usuario logeado).
-6. **Calcula el tiempo trabajado por día**: En el listado de horas calcula el tiempo trabajado por día a partir de la fecha y hora de entrada y la fecha y hora de salida.
-8. **Revisa los formularios referentes al usuario**: Revísalos y componetiza lo que consideres.
+5.DONE **Cada empleado solo puede ver sus horas**: Modifica la pantalla TrackingPage de modo que cada empleado solo pueda ver sus propias horas (a partir del usuario logeado).
+6.DONE **Calcula el tiempo trabajado por día**: En el listado de horas calcula el tiempo trabajado por día a partir de la fecha y hora de entrada y la fecha y hora de salida.
+8.DONE **Revisa los formularios referentes al usuario**: Revísalos y componetiza lo que consideres.
 7. **Añade test a la aplicación**: No es necesario que testees toda la aplicación. Haz los test que consideres más importantes
-8. **Corrige errores**: Corrige los bugs que detectes.
-9. **Lúcete**: Revisa la aplicación y mejora la parte que quieras. Busca el apartado donde mejor puedas lucir tus cualidades y adelante. Acuérdate de explicar luego en el README lo que has hecho.
+8.ONGOING **Corrige errores**: Corrige los bugs que detectes.
+9.ONGOING **Lúcete**: Revisa la aplicación y mejora la parte que quieras. Busca el apartado donde mejor puedas lucir tus cualidades y adelante. Acuérdate de explicar luego en el README lo que has hecho.
 
 ## Explicaciones del candidato
 Aquí puedes explicar lo que has hecho y lo que harías si fuera un proyecto real y tuvieras más tiempo.
@@ -65,3 +65,7 @@ He hecho refactor conforme iba accediendo a nuevas partes de la aplicación. Por
 Sobre el segundo punto, cambié en los lugares que era necesario y que utilizaba por defecto colores hexagesimales por las variables de nuestros colores del tema corporativo ( lo ideal sería tener alguna gama más, para poder jugar con las tonalidades con las interacciones (hovers, actives,etc)). He creado también para controlar de forma general la paleta de colores de Antd un archivo que modifica los colores que usa por defecto los componentes de antd, reduciendo mucho el trabajo de editar o crear wrappers customizados para estilar los compoenntes de antd, está dentro la carpeta de styles y se importa en el provider en App.
 
 He refactorizado la pgina de la lista de usuarios, añadido las calls a la carpeta API con todos los métodos. He quitado toda la logica del archivo de Page, ahora employeeTable tiene su carpeta en componentes y dejamos libres el archivo de la página para solo logica de la página ( posibles, validadiones, metadata de la pagina, etc). He separado la loggica de la tabla de la del formulario, ahora cada uno tiene su archivo y es más legible (y más corto). Se podría atomizar más, pero he decidido seguir adelante con el resto de puntos. Sobre los formualrios, he fixeado un par de cosas, como el selector de roles, que tenia un placeholder pero ningun valor, lo he dejado en blanco para que el usuario pueda elegir entre las opciones.
+
+Para aplicar el cambio de la lista de tracking, para que el usuario solo pueda ver sus horas, he añadido que en el context se guardase la id, y asi poder acceder a ella en cualquier punto. Modifiqué el endpoint de login, para que devuelva el id, ya que el FE no tiene acceso ni conocimiento de la id del usuario y siempre vendría en casos reales del back.
+
+He añadido el cambio para mostrar las horas ( y minutos) trabajadas en cada file de horas. He optado, ya que no se guardan en DB con esa info y se manipula el listado de trackings con el formulario, crear una constante que lo calcule cada vez que el estado de trackings cambie de estado. Dejando asi también limpio los valores que recibimos del Back.
