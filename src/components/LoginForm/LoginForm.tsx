@@ -49,7 +49,7 @@ export const LoginForm = () => {
       </Form.Item>
       <Form.Item<FieldType>
         name="password"
-        label="password"
+        label="Password"
         rules={[{ required: true, message: "Please input the password" }]}
       >
         <Input.Password
@@ -58,7 +58,11 @@ export const LoginForm = () => {
           }
         />
       </Form.Item>
-      <Form.Item name="submit" className=" flex justify-center">
+      <Form.Item
+        name="submit"
+        className=" flex justify-center"
+        style={{ margin: "0" }}
+      >
         <button type="submit" className="primary-btn">
           Submit
         </button>

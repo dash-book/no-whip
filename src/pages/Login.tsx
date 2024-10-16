@@ -3,6 +3,7 @@ import logo from "../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext/useAuth";
 import { useEffect } from "react";
+import { Card } from "antd";
 
 export const Login = () => {
   const { isLogged } = useAuth();
@@ -23,9 +24,11 @@ export const Login = () => {
         src={logo}
         alt="Logo"
         className="filter-invert"
-        style={{ width: "300px" }}
+        style={{ width: "400px" }}
       />
-      <LoginForm />
+      <Card>
+        <LoginForm />
+      </Card>
     </main>
   );
 };

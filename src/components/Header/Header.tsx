@@ -5,6 +5,10 @@ import logo from "../../assets/logo.svg";
 import "./Header.scss";
 import { useAuth } from "../../context/AuthContext/useAuth";
 import apiRoutes from "../../api/apiRoutes";
+import {
+  UsergroupAddOutlined,
+  UsergroupDeleteOutlined,
+} from "@ant-design/icons";
 
 const { Header: AntHeader } = Layout;
 
@@ -31,11 +35,17 @@ const Header: React.FC = () => {
         </Menu.Item>
         {isLogged ? (
           <Menu.Item key="log-out">
-            <span onClick={handleUserLogout}>Logout</span>
+            <span onClick={handleUserLogout}>
+              <UsergroupDeleteOutlined style={{ paddingRight: "6px" }} />
+              Logout
+            </span>
           </Menu.Item>
         ) : (
           <Menu.Item key="log-in">
-            <Link to={apiRoutes.login.page}>Log in</Link>
+            <Link to={apiRoutes.login.page}>
+              <UsergroupAddOutlined style={{ paddingRight: "6px" }} />
+              Log in
+            </Link>
           </Menu.Item>
         )}
       </Menu>

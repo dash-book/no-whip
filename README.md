@@ -69,3 +69,5 @@ He refactorizado la pgina de la lista de usuarios, añadido las calls a la carpe
 Para aplicar el cambio de la lista de tracking, para que el usuario solo pueda ver sus horas, he añadido que en el context se guardase la id, y asi poder acceder a ella en cualquier punto. Modifiqué el endpoint de login, para que devuelva el id, ya que el FE no tiene acceso ni conocimiento de la id del usuario y siempre vendría en casos reales del back.
 
 He añadido el cambio para mostrar las horas ( y minutos) trabajadas en cada file de horas. He optado, ya que no se guardan en DB con esa info y se manipula el listado de trackings con el formulario, crear una constante que lo calcule cada vez que el estado de trackings cambie de estado. Dejando asi también limpio los valores que recibimos del Back.
+
+He añadido el icono en el formulario de Tracking igual que lo teníamos en el de usuarios, he dado un poco mas de margenes a la zona del contenido y para resaltar la visibilidad he agrupado elementos dentro de Cards.

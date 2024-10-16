@@ -27,7 +27,7 @@ export const getColumns = ({
       render: (time: string) => new Date(time).toLocaleTimeString(),
     },
     {
-      title: "Total Time (in hours)",
+      title: "Total Time",
       dataIndex: "total",
       key: "total",
       render: (time: string) => time,

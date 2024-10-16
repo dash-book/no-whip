@@ -6,6 +6,7 @@ import { useAuth } from "../../context/AuthContext/useAuth";
 import { getColumns, getTotalTime } from "./TrackingTable.utils";
 
 import type { TrackingRecord } from "../../types/Tracking";
+import { PlusOutlined } from "@ant-design/icons";
 
 export const TrackingPageTable: React.FC = () => {
   const { id } = useAuth();
@@ -121,10 +122,10 @@ export const TrackingPageTable: React.FC = () => {
   };
   const columns = getColumns({ handleEdit, handleDelete });
   return (
-    <main className="w-full">
+    <main className="w-full" style={{ padding: "16px 16px 0 16px" }}>
       {selectedUserId && (
         <div style={{ marginBottom: 20 }}>
-          <Button type="primary" onClick={handleAddNew}>
+          <Button type="primary" icon={<PlusOutlined />} onClick={handleAddNew}>
             Add New Tracking Record
           </Button>
         </div>

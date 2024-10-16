@@ -60,7 +60,7 @@ export const EmployeesTable: React.FC = () => {
   const columns = getColumns({ handleView, handleDelete, handleEdit });
 
   return (
-    <main className="w-full" style={{ paddingTop: "16px" }}>
+    <main className="w-full" style={{ padding: "16px 16px 0 16px" }}>
       <Space style={{ marginBottom: 16 }}>
         <Button type="primary" icon={<PlusOutlined />} onClick={handleAddNew}>
           Add New Employee

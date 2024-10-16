@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, DatePicker, Form, message } from "antd";
+import { Button, DatePicker, Form, message, Card } from "antd";
 import axios from "axios";
 import moment from "moment";
 import { CsvBuilder } from "filefy";
@@ -96,42 +96,59 @@ const AuditPage: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Audit Employee Tracking Data</h2>
-      <p>
-        By starting the audit, you will be able to access employee tracking
-        data, but employees will be notified that their working hours are being
-        reviewed.
-      </p>
+    <main className="flex justify-center w-full" style={{ padding: "20px" }}>
+      <Card
+        title="Audit Employee Tracking Data"
+        style={{
+          height: "max-content",
+          textAlign: "center",
+          maxWidth: "50%",
+        }}
+      >
+        {/* <h2>Audit Employee Tracking Data</h2> */}
+        <img
+          src={"images/audit.png"}
+          alt="Audit Employee Tracking Data"
+          width={"200px"}
+          height={"auto"}
+          style={{ margin: "0 auto 20px", display: "block" }}
+        />
+        <p>
+          By starting the audit, you will be able to access employee tracking
+          data, but employees will be notified that their working hours are
+          being reviewed.
+        </p>
 
-      {!isAuditStarted && (
-        <Button className="primary-btn" onClick={handleStartAudit}>
-          Start Audit
-        </Button>
-      )}
-
-      {isAuditStarted && (
-        <Form
-          form={form}
-          onFinish={handleDownloadAudit}
-          layout="vertical"
-          style={{ marginTop: "20px" }}
-        >
-          <Form.Item
-            name="range"
-            label="Select date range"
-            rules={[{ required: true, message: "Please select a date range" }]}
+        {!isAuditStarted && (
+          <Button className="primary-btn" onClick={handleStartAudit}>
+            Start Audit
+          </Button>
+        )}
+        {isAuditStarted && (
+          <Form
+            form={form}
+            onFinish={handleDownloadAudit}
+            layout="vertical"
+            style={{ marginTop: "20px" }}
           >
-            <RangePicker />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit" loading={loading}>
-              Download CSV
-            </Button>
-          </Form.Item>
-        </Form>
-      )}
-    </div>
+            <Form.Item
+              name="range"
+              label="Select date range"
+              rules={[
+                { required: true, message: "Please select a date range" },
+              ]}
+            >
+              <RangePicker />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" loading={loading}>
+                Download CSV
+              </Button>
+            </Form.Item>
+          </Form>
+        )}
+      </Card>
+    </main>
   );
 };
 

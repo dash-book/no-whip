@@ -17,13 +17,14 @@ import {
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import axios from "axios";
 import moment from "moment";
+import { User } from "../types/User";
 
 const WhoIsWorkingPage: React.FC = () => {
   const [form] = Form.useForm();
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
-  const [currentUser, setCurrentUser] = useState<any>(null); // Usuario actualmente seleccionado para editar
+  const [currentUser, setCurrentUser] = useState<User | null>(null); // Usuario actualmente seleccionado para editar
 
   // Función para manejar el envío del formulario de búsqueda
   const handleSearch = async (values: any) => {
@@ -110,32 +111,38 @@ const WhoIsWorkingPage: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Who is Working?</h2>
-
-      {/* Formulario para seleccionar fecha y hora */}
-      <Form form={form} onFinish={handleSearch} layout="horizontal">
-        <Form.Item
-          name="date"
-          label="Select Date"
-          rules={[{ required: true, message: "Please select a date" }]}
-        >
-          <DatePicker />
-        </Form.Item>
-        <Form.Item
-          name="time"
-          label="Select Time"
-          rules={[{ required: true, message: "Please select a time" }]}
-        >
-          <TimePicker format="HH:mm" />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
-            Search
-          </Button>
-        </Form.Item>
-      </Form>
-
+    <main className=" w-full" style={{ padding: "20px" }}>
+      <Card
+        title="Who is Working?"
+        style={{
+          height: "max-content",
+          width: "fit-content",
+          margin: "0 auto 16px",
+        }}
+      >
+        {/* Formulario para seleccionar fecha y hora */}
+        <Form form={form} onFinish={handleSearch} layout="horizontal">
+          <Form.Item
+            name="date"
+            label="Select Date"
+            rules={[{ required: true, message: "Please select a date" }]}
+          >
+            <DatePicker />
+          </Form.Item>
+          <Form.Item
+            name="time"
+            label="Select Time"
+            rules={[{ required: true, message: "Please select a time" }]}
+          >
+            <TimePicker format="HH:mm" />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" loading={loading}>
+              Search
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
       {/* Grid de empleados */}
       <Row gutter={[16, 16]}>
         {employees.map((employee: any) => (
@@ -201,7 +208,7 @@ const WhoIsWorkingPage: React.FC = () => {
           </Form.Item>
         </Form>
       </Modal>
-    </div>
+    </main>
   );
 };
 
