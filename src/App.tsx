@@ -1,24 +1,29 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { AuthContextProvider } from "./context/AuthContext/AuthContext";
 import { Routes } from "./Routes";
-import { Layout } from "antd";
+import { ConfigProvider, Layout } from "antd";
 import Header from "./components/Header/Header";
 import "antd/dist/reset.css";
-import { AuthContextProvider } from "./context/AuthContext/AuthContext";
+import theme from "./styles/antdThemeConfig";
 
 const { Content } = Layout;
 
 const App: React.FC = () => {
   return (
     <AuthContextProvider>
-      <Router>
-        <Layout className="min-h-100vh">
-          <Header />
-          <Content style={{ padding: "20px", width: "100vw", display: "flex" }}>
-            <Routes />
-          </Content>
-        </Layout>
-      </Router>
+      <ConfigProvider theme={theme}>
+        <Router>
+          <Layout className="min-h-100vh">
+            <Header />
+            <Content
+              style={{ padding: "20px", width: "100vw", display: "flex" }}
+            >
+              <Routes />
+            </Content>
+          </Layout>
+        </Router>
+      </ConfigProvider>
     </AuthContextProvider>
   );
 };

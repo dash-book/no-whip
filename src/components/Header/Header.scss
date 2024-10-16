@@ -14,6 +14,7 @@
   img {
     width: 300px;
     cursor: pointer;
+    
   }
 
   .l__Menu {
@@ -24,10 +25,18 @@
   }
 
   .ant-menu-item {
-    color: #e0e1dd;
+    color: $light-blue;
 
-    a:hover {
-      color: $blue;
-    }
+    &.ant-menu-item-selected{
+      background: $blue;
+
+      &:hover{
+        background: $blue;
+      } 
+    };
+
+    & a:hover {
+      color: $light-blue;
+    };
   }
 }

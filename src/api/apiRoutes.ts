@@ -15,6 +15,12 @@ const apiRoutes = {
   whoIsWorking: {
     page: "/who-is-working",
   },
+  users: {
+    getUsers: "/api/users",
+    editUser: (id: string) => `/api/users/${id}`,
+    createUser: "/api/users",
+    deleteUser: (id: string) => `/api/users/${id}`,
+  },
 };
 
 export default apiRoutes;

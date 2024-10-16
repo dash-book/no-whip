@@ -38,7 +38,7 @@ Sigue estos pasos para instalar el proyecto:
 Esta prueba NO es un examen. No nos interesa que respondas de forma correcta a todas las preguntas. Los ejercicios planteados son meras excusas para comprobar tu forma de programar y "conocer" un poco tu código. Si hay alguna parte que hayas tenido tiempo de terminar, explícala al final de este README y cuéntanos cómo lo harías si tuvieras tiempos y otros recursos.
 
 1.DONE  **Login**: Añade un sistema de login para conectarse a la aplicación. Existe un endpoint (/api/login) que recibe un usuario y contraseña y devuelve un "Login successful" si el usuario es correcto. Puedes ver la lista de usuarios y contraseñas en el archivo server/server.js. El backend no tiene un sistema de tokens ni nada parecido para validar el login. No es necesario implementarlo.
-2. **Estilos por defecto de AntD**: Modifica los estilos por defecto de AntD para que se adapten a los colores definidos en las variables.
+2.DONE **Estilos por defecto de AntD**: Modifica los estilos por defecto de AntD para que se adapten a los colores definidos en las variables.
 3. **Refactoriza componentes**: Refactoriza los componentes que consideres oportunos.
 4. **Modifica la interfaz**: Modifica la interfaz de la página "Audit" para hacerla más visual, intuitiva y moderna.
 5. **Cada empleado solo puede ver sus horas**: Modifica la pantalla TrackingPage de modo que cada empleado solo pueda ver sus propias horas (a partir del usuario logeado).
@@ -56,8 +56,11 @@ Para el sistema de login, He creado un pagina para el login, con el formulario i
 
 Para controlar a nivel global si un usuario está logeado he creado un context, que nos ayuda en el sistema de rutas, he añadido que un usuario si no está logeado no pueda acceder al sistema. Este context crea una cookie para poder controlar el tema de la expiracion,aunque lo ideal seria montarlo con un JWT y que tengamos la info dentro de un hash, podemos acceder a la info en cualquier componente o hook con el hook que he creado de **useAuth** .
 
-El formulario tiene validaciones básicas, required y que el username sea email. Enviamos por POST la contraseña sin cifrar ni nada, no vamos a hacer esto con un producto en vivo.
+El formulario tiene validaciones básicas (campos requeridos ) . Enviamos por POST la contraseña sin cifrar ni nada, no vamos a hacer esto con un producto en vivo.
 
 Añadí el controlador por si la api da error, como por ejemplo si el usuario/contraseña no es correcto. EN este punto, lo ideal no es indicar que parte ha fallado, por motivos de seguridad y evitar ataques de fuerza bruta si damos la info de que un usuario existe o no por ejemplo, lo ideal es un mensaje más global.
 
 He hecho refactor conforme iba accediendo a nuevas partes de la aplicación. Por ejemplo, he creado una constante que alberga todas las rutas de la api y de las paginas de la aplicación, ya que son valores que repetimos bastante en la aplicación y ayudará a nivel de escalabilidad tenerlo bein estructurado en un solo punto de verdad.
+
+Sobre el segundo punto, cambié en los lugares que era necesario y que utilizaba por defecto colores hexagesimales por las variables de nuestros colores del tema corporativo ( lo ideal sería tener alguna gama más, para poder jugar con las tonalidades con las interacciones (hovers, actives,etc)). He creado también para controlar de forma general la paleta de colores de Antd un archivo que modifica los colores que usa por defecto los componentes de antd, reduciendo mucho el trabajo de editar o crear wrappers customizados para estilar los compoenntes de antd, está dentro la carpeta de styles y se importa en el provider en App. 
+

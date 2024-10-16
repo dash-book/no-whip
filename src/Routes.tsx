@@ -2,7 +2,7 @@ import { Route, Routes as ReactRoutes } from "react-router-dom";
 
 import { Login } from "./pages/Login";
 import HomePage from "./pages/HomePage";
-import EmployeesPage from "./pages/EmployeesPage";
+import { EmployeesPage } from "./pages/EmployeesPage";
 import AuditPage from "./pages/AuditPage";
 import TrackingPage from "./pages/TrackingPage";
 import WhoIsWorkingPage from "./pages/WhoIsWorkingPage";

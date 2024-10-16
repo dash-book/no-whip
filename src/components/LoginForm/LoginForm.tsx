@@ -20,7 +20,7 @@ export const LoginForm = () => {
       const error = err as AxiosError<ErrorRecived>;
       form.setFields([
         {
-          name: "submit",
+          name: "username",
           errors: [error?.message || "error"],
         },
       ]);
@@ -43,13 +43,7 @@ export const LoginForm = () => {
       <Form.Item<FieldType>
         name="username"
         label="Username"
-        rules={[
-          { required: true, message: "Please input the username" },
-          {
-            type: "email",
-            message: "Please enter a valied Email",
-          },
-        ]}
+        rules={[{ required: true, message: "Please input the username" }]}
       >
         <Input />
       </Form.Item>
@@ -64,10 +58,10 @@ export const LoginForm = () => {
           }
         />
       </Form.Item>
-      <Form.Item name="submit">
-        <Button type="primary" htmlType="submit">
+      <Form.Item name="submit" className=" flex justify-center">
+        <button type="submit" className="primary-btn">
           Submit
-        </Button>
+        </button>
       </Form.Item>
     </Form>
   );

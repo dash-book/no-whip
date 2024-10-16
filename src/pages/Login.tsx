@@ -17,13 +17,13 @@ export const Login = () => {
   return (
     <main
       className="flex flex-col w-full items-center justify-center"
-      style={{ gap: 16 }}
+      style={{ gap: 32 }}
     >
       <img
         src={logo}
         alt="Logo"
         className="filter-invert"
-        style={{ width: "200px" }}
+        style={{ width: "300px" }}
       />
       <LoginForm />
     </main>

@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   return (
     <AntHeader className="l__Header">
       <Link to="/">
-        <img src={logo} alt="Logo" style={{ width: "200px" }} />
+        <img src={logo} alt="Logo" style={{ width: "150px" }} />
       </Link>
 
       <Menu className="l__Menu" mode="horizontal" theme="dark">

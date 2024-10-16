@@ -1,5 +1,7 @@
 export type User = {
+  id: string;
+  email: string;
   username: string;
-  password: string;
-  role: string; //TODO make a enum of the posible roles
+  password?: string;
+  roles: string[];
 };
