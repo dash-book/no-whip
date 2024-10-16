@@ -7,7 +7,7 @@ import {
 
 import type { EmployeeTableModalProps } from "./EmployeeTable.types";
 
-export const EmployeesTableModal = ({
+export const EmployeesTableModal: React.FC<EmployeeTableModalProps> = ({
   selectedUser,
   users,
   setUsers,
@@ -15,9 +15,7 @@ export const EmployeesTableModal = ({
   setIsModalVisible,
   isModalVisible,
   form,
-}: EmployeeTableModalProps) => {
-  console.log("selectedUser", selectedUser);
-
+}) => {
   const { Option } = Select;
   const { addUser, editUser } = useUsers();
 
