@@ -89,3 +89,5 @@ En resumen:
 - Cambios para ver solo las hroas del tracking por la id del usuario
 - Mostrar las horas en la lista de tracking
 - Refactors y cambios que he ido aplicando conforme iba pasando por las partes de la web
+
+Las páginas de tracking y de whoisWorking quedarian por tocar, aquneu he hecho cambios para que se vean ás atractivos, se merecen un pelín más de cariño y de CSS 😁
