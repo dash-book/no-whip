@@ -64,7 +64,7 @@ He hecho refactor conforme iba accediendo a nuevas partes de la aplicación. Por
 
 Sobre el segundo punto, cambié en los lugares que era necesario y que utilizaba por defecto colores hexagesimales por las variables de nuestros colores del tema corporativo ( lo ideal sería tener alguna gama más, para poder jugar con las tonalidades con las interacciones (hovers, actives,etc)). He creado también para controlar de forma general la paleta de colores de Antd un archivo que modifica los colores que usa por defecto los componentes de antd, reduciendo mucho el trabajo de editar o crear wrappers customizados para estilar los compoenntes de antd, está dentro la carpeta de styles y se importa en el provider en App.
 
-He refactorizado la pgina de la lista de usuarios, añadido las calls a la carpeta API con todos los métodos. He quitado toda la logica del archivo de Page, ahora employeeTable tiene su carpeta en componentes y dejamos libres el archivo de la página para solo logica de la página ( posibles, validadiones, metadata de la pagina, etc). He separado la loggica de la tabla de la del formulario, ahora cada uno tiene su archivo y es más legible (y más corto). Se podría atomizar más, pero he decidido seguir adelante con el resto de puntos. Sobre los formualrios, he fixeado un par de cosas, como el selector de roles, que tenia un placeholder pero ningun valor, lo he dejado en blanco para que el usuario pueda elegir entre las opciones.
+He refactorizado la página de la lista de usuarios, añadido las calls a la carpeta API con todos los métodos. He quitado toda la logica del archivo de Page, ahora employeeTable tiene su carpeta en componentes y dejamos libres el archivo de la página para solo logica de la página ( posibles, validadiones, metadata de la pagina, etc). He separado la logica de la tabla de la del formulario, ahora cada uno tiene su archivo y es más legible (y más corto). Se podría atomizar más, pero he decidido seguir adelante con el resto de puntos. Sobre los formualrios, he fixeado un par de cosas, como el selector de roles, que tenia un placeholder pero ningun valor, lo he dejado en blanco para que el usuario pueda elegir entre las opciones.
 
 Para aplicar el cambio de la lista de tracking, para que el usuario solo pueda ver sus horas, he añadido que en el context se guardase la id, y asi poder acceder a ella en cualquier punto. Modifiqué el endpoint de login, para que devuelva el id, ya que el FE no tiene acceso ni conocimiento de la id del usuario y siempre vendría en casos reales del back.
 
@@ -72,4 +72,20 @@ He añadido el cambio para mostrar las horas ( y minutos) trabajadas en cada fil
 
 He añadido el icono en el formulario de Tracking igual que lo teníamos en el de usuarios, he dado un poco mas de margenes a la zona del contenido y para resaltar la visibilidad he agrupado elementos dentro de Cards.
 
-He instalado y configurado react-testing-library (Jest) en el repositorio, siempre da problemas el montaje incial, con los .jsx, TS y demás. Pero ya está funcionando 😁. He implemento un test en el componente de Header de muestra, lo ideal es que cada componente de UI lleve uno. Al usar Antd, nos ahorramos gran nñumero de tests.
+He instalado y configurado react-testing-library (Jest) en el repositorio, siempre da problemas el montaje incial, con los .jsx, TS y demás. Pero ya está funcionando 😁. He implemento un test en el componente de Header de muestra, lo ideal es que cada componente de UI lleve uno. Al usar Antd, nos ahorramos gran nñumero de tests. ** Para arrancar los test he creado el comando de npm run test **
+
+Por ultimo, he instalado y configurado Cypress para los test end-2-end. Para tener cypress con Vite, necesitamos modificar el comando de run del cliente para que permita el host de cypress (cosa quue he aprendido nueva ). He creado un test que visita nuestra homepage, sin logear, la visita con una cookie de auth y hace click en el boton de "log out" del header. Podriamos profundizar mucho mas en estos tests y añadir muchos más. \*\* Para arrancar cyrpess hay que arrancar el cliente y el comando en otra terminal "npx cypress open", al abrir la aplicacion de cypress, hayq que ir a los test e2e y ejecutar el de Homepage.
+
+En resumen:
+
+- Añadidos tests de cypress en HomePage
+- Añadidos test unitarios dentro de la carpeta components/Hedar
+- Añadido esquema de colores a la configuración de Antd
+- Refactor y atomización de la página y componentes de usuarios (faltaría tracking y whoisWorking por hacer)
+- Añadidos estilos y algún toque personal a la página.
+- Creado el sistema de login ( context para controlar y almacenar, formulario, y rutas protegidas y redirecciones)
+- Creadas un par de funciones utiles (cookies, calculador de tiempo, etc)
+- Organizacion de llamadas a la api (solo para "user", las otras paginas quedan por hacer)
+- Cambios para ver solo las hroas del tracking por la id del usuario
+- Mostrar las horas en la lista de tracking
+- Refactors y cambios que he ido aplicando conforme iba pasando por las partes de la web
