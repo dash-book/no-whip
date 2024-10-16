@@ -12,12 +12,14 @@ const defaultContext: AuthContextObject = {
   handleUserLogout: () => {},
 };
 
-export const AuthContext = createContext<AuthContextObject>(defaultContext);
+const AuthContext = createContext<AuthContextObject>(defaultContext);
 
-export const AuthContextProvider: FC<AuthContextProviderProps> = ({
-  children,
-}) => {
-  const [isLogged, setIsLogged] = useState<boolean>(!!getCookie("auth"));
+const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) => {
+  const authCookie = getCookie("auth");
+
+  const [isLogged, setIsLogged] = useState<boolean>(
+    Boolean(authCookie && authCookie.length > 0)
+  );
   const [id, setId] = useState<string | undefined>(getCookie("auth"));
 
   const handleLogin = useCallback((id: string) => {
@@ -44,3 +46,5 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({
     </AuthContext.Provider>
   );
 };
+
+export { AuthContext, AuthContextProvider };
